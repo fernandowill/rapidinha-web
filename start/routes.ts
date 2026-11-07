@@ -29,3 +29,5 @@ router
     router.post('logout', [controllers.Session, 'destroy'])
   })
   .use(middleware.auth())
+
+router.get('ola', [controllers.Olas, 'index'])
