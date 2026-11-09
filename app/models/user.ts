@@ -4,7 +4,7 @@ import { compose } from '@adonisjs/core/helpers'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { hasMany } from '@adonisjs/lucid/orm'
-import Video from './video.ts'
+import Video from '#models/video'
 
 /**
  * User model represents a user in the application.
