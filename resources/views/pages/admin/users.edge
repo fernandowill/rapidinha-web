@@ -1,0 +1,37 @@
+
+@layouts.app({ title: 'Usuários' })
+  @page({ title: 'Usuários', description: 'Todos os usuários cadastrados no Rapidinha.' })
+    <div class="panel table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Usuário</th>
+            <th>E-mail</th>
+            <th>Admin</th>
+            <th>Criado em</th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(user in users)
+            <tr>
+              <td class="mono">{{ user.id }}</td>
+              <td>{{ user.fullName ?? '—' }}</td>
+              <td>{{ '@' + user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                @if(user.isAdmin)
+                  Sim
+                @else
+                  Não
+                @end
+              </td>
+              <td>{{ user.createdAt.toFormat('dd/MM/yyyy HH:mm') }}</td>
+            </tr>
+          @end
+        </tbody>
+      </table>
+    </div>
+  @end
+@end

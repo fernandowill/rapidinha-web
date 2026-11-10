@@ -1,0 +1,44 @@
+@layouts.app({title: 'Postar video'}) 
+@page({ title: 'Postar video'})
+        @form({
+            action: '/videos',
+            method: 'POST',
+            enctype: 'multipart/form-data',
+            'x-data': '{ submitting: false }',
+            'x-on:submit': 'submitting = true',
+        })
+            @field.root({ name: 'title' })
+            @!field.label({ text: 'Título' })
+            @!input.control({})
+            @!field.error()
+            @end
+            
+            @field.root({ name: 'description' })
+            @!field.label({ text: 'Descrição' })
+            @!textarea.control({placeholder: '...'})
+            @!field.error()
+            @end
+            
+            @field.root({ name: 'video' })
+            @!field.label({ text: 'Vídeo' })
+            @!input.control({type: 'file', accept: 'video/*', })
+            @!field.error()
+            @end
+            
+            @field.root({ name: 'thumbnail' })
+            @!field.label({ text: 'Thumbnail' })
+            @!input.control({type: 'file', accept: 'image/*', })
+            @!field.error()
+            @end
+            
+            @!button({
+            text: 'Publicar',
+            type: 'submit',
+            block: true,
+            style: 'margin-top: 4px;',
+            'x-bind:disabled': 'submitting',
+            'x-text': "submitting ? 'Enviando...' : 'Publicar'",
+            })
+            @end
+        @end
+    @end

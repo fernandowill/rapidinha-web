@@ -27,6 +27,10 @@ router
   .group(() => {
     router.on('/dashboard').render('pages/dashboard').as('dashboard')
     router.post('logout', [controllers.Session, 'destroy'])
+    router.get('admin/users', [controllers.Users, 'index'])
+    router.get('videos/create', [controllers.Videos, 'create']).as('videos_create')
+    router.post('videos', [controllers.Videos, 'store'])
+
   })
   .use(middleware.auth())
 
