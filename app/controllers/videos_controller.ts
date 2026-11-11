@@ -10,13 +10,27 @@ export default class VideosController {
     }
     async store({ request, response, auth }: HttpContext) {
         const { title,description, video, thumbnail } = await request.validateUsing(createVideoValidator)
-        const videoName = string.uuid()+ '.' + video.extname
+        const publicId = string.random(11)
+        const videoName = publicId+ '.' + video.extname
         await video.move(app.publicPath('uploads/videos'), {name: videoName})
-        const thumbnailName = string.uuid()+ '.' +thumbnail.extname
+        const thumbnailName = publicId+ '.' +thumbnail.extname
         await thumbnail.move(app.publicPath('uploads/thumbnails'), {name: thumbnailName})
-        await Video.create({title, description,userId: auth.user!.id,videoPath: '/uploads/videos/' + videoName, thumbnailPath: '/uploads/thumbnails/' + thumbnailName})
+        await Video.create({title, publicId ,description,userId: auth.user!.id,videoPath: '/uploads/videos/' + videoName, thumbnailPath: '/uploads/thumbnails/' + thumbnailName})
 
     
-        return response.redirect().toRoute('dashboard')
+        return response.redirect().toRoute('video_show', { publicId})
+    }
+    async show({params, view}: HttpContext){
+        const video = await Video.query().where('public_id', params.publicId).preload('author').firstOrFail();
+        return view.render('pages/videos/show', { video })
+    }
+    async index({request, view}:HttpContext ){
+        const q = request.input('q')
+        const query = Video.query().preload('author').orderBy('created_at', 'desc')
+        if (q){
+            query.whereLike('title', '%' + q + '%')
+        }
+        const videos = await query
+        return view.render('pages/videos/index', {videos, q})
     }
 }

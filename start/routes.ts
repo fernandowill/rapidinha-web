@@ -11,7 +11,7 @@ import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
 
-router.on('/').render('pages/home').as('home')
+router.get('/', [controllers.Videos, 'index']).as('home')
 
 router
   .group(() => {
@@ -25,7 +25,6 @@ router
 
 router
   .group(() => {
-    router.on('/dashboard').render('pages/dashboard').as('dashboard')
     router.post('logout', [controllers.Session, 'destroy'])
     router.get('admin/users', [controllers.Users, 'index'])
     router.get('videos/create', [controllers.Videos, 'create']).as('videos_create')
@@ -33,5 +32,7 @@ router
 
   })
   .use(middleware.auth())
+  router.get('videos/:publicId', [controllers.Videos, 'show']).as('video_show')
+
 
 router.get('ola', [controllers.Olas, 'index'])

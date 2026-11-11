@@ -31,7 +31,7 @@ export class UserSchema extends BaseModel {
 }
 
 export class VideoSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'id', 'thumbnailPath', 'title', 'updatedAt', 'userId', 'videoPath', 'views'] as const
+  static $columns = ['createdAt', 'description', 'id', 'publicId', 'thumbnailPath', 'title', 'updatedAt', 'userId', 'videoPath', 'views'] as const
   $columns = VideoSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -39,6 +39,8 @@ export class VideoSchema extends BaseModel {
   declare description: string | null
   @column({ isPrimary: true })
   declare id: number
+  @column()
+  declare publicId: string
   @column()
   declare thumbnailPath: string
   @column()

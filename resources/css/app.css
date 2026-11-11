@@ -761,6 +761,13 @@ input {
   text-align: center;
   color: var(--muted);
 }
+
+/* Nome do usuário logado no header */
+.header__user {
+  font-size: 14px;
+  font-weight: 560;
+  color: var(--muted);
+}
 .sidebar-layout {
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);

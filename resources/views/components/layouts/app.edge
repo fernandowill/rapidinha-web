@@ -2,7 +2,11 @@
   Top-level app navigation. Add an entry here for every new area of your
   app, and it shows up in the navigation bar with its active state handled.
 --}}
-@let(nav = [{ label: 'Dashboard', route: 'dashboard', icon: 'lucide:house' }])
+@let(nav = [{ label: 'Vídeos', route: 'home', icon: 'lucide:house' }])
+{{-- Itens que só aparecem para quem está logado --}}
+@if(auth?.user)
+  @assign(nav = [...nav, { label: 'Enviar vídeo', route: 'videos_create', icon: 'lucide:upload' }])
+@end
 @let(pageTitle = $props.get('title'))
 <!DOCTYPE html>
 <html
@@ -27,11 +31,23 @@
         @!logo({ size: 28 })
         <div class="header__right">
           @!themeToggle()
-          @form({ route: 'session.destroy', method: 'POST' })
-            <button type="submit" class="btn btn--secondary btn--sm">
-              @svg('lucide:log-out', { width: 15, height: 15 })
-              Log out
-            </button>
+          @if(auth?.user)
+            {{-- Logado: mostra quem é e o botão de sair --}}
+            <span class="header__user">{{ '@' + auth.user.username }}</span>
+            @form({ route: 'session.destroy', method: 'POST' })
+              <button type="submit" class="btn btn--secondary btn--sm">
+                @svg('lucide:log-out', { width: 15, height: 15 })
+                Sair
+              </button>
+            @end
+          @else
+            {{-- Visitante: botões de entrar e criar conta --}}
+            @link({ route: 'session.create', class: 'btn btn--ghost btn--sm' })
+              Entrar
+            @end
+            @link({ route: 'new_account.create', class: 'btn btn--primary btn--sm' })
+              Criar conta
+            @end
           @end
         </div>
       </div>

@@ -1,0 +1,27 @@
+@layouts.app({ title: video.title })
+  @page()
+    <div style="display: flex; justify-content: center; background: #000; border-radius: var(--r-lg); overflow: hidden;">
+      <video
+        src="{{ video.videoPath }}"
+        poster="{{ video.thumbnailPath }}"
+        controls
+        autoplay
+        muted
+        loop
+        playsinline
+        style="max-height: 80vh; max-width: 100%; display: block;"
+      ></video>
+    </div>
+
+    <div class="panel" style="margin-top: 16px;">
+      <h1 class="page__title">{{ video.title }}</h1>
+      <p class="page__description">
+        {{ '@' + video.author.username }} · {{ video.createdAt.toFormat('dd/MM/yyyy') }} · {{ video.views }} visualizações
+      </p>
+
+      @if(video.description)
+        <p style="margin-top: 12px; white-space: pre-line;">{{ video.description }}</p>
+      @end
+    </div>
+  @end
+@end
