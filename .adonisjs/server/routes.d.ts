@@ -11,6 +11,7 @@ export type ScannedRoutes = {
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
     'videos_create': { paramsTuple?: []; params?: {} }
+    'videos_created': { paramsTuple?: []; params?: {} }
     'videos.store': { paramsTuple?: []; params?: {} }
     'admin_users': { paramsTuple?: []; params?: {} }
     'video_show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
@@ -20,6 +21,7 @@ export type ScannedRoutes = {
     'new_account.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'videos_create': { paramsTuple?: []; params?: {} }
+    'videos_created': { paramsTuple?: []; params?: {} }
     'admin_users': { paramsTuple?: []; params?: {} }
     'video_show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
   }
@@ -28,6 +30,7 @@ export type ScannedRoutes = {
     'new_account.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'videos_create': { paramsTuple?: []; params?: {} }
+    'videos_created': { paramsTuple?: []; params?: {} }
     'admin_users': { paramsTuple?: []; params?: {} }
     'video_show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
   }

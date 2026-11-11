@@ -21,7 +21,6 @@
       <div class="header__inner">
         @!logo({ size: 28 })
         <div class="header__right">
-          @!themeToggle()
           @if(auth?.user)
             @link({ route: 'home', class: 'btn btn--primary btn--sm' })
               Vídeos

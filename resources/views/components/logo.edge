@@ -1,14 +1,4 @@
-@let(size = $props.get('size', 26))
-@link({
-  route: 'home',
-  'aria-label': 'Rapidinha — página inicial',
-  style: 'display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none;',
-})
-  <span
-    aria-hidden="true"
-    style="display: inline-grid; place-items: center; width: {{ size }}px; height: {{ size }}px; border-radius: 8px; background: var(--ink); color: var(--card);"
-  >
-    @svg('lucide:zap', { width: size * 0.6, height: size * 0.6 })
-  </span>
-  <span style="font-weight: 700; font-size: {{ size * 0.68 }}px; letter-spacing: -0.02em;">Rapidinha</span>
+@link({ route: 'home', class: 'logo' })
+  @svg('lucide:zap', { width: 22, height: 22 })
+  Rapidinha
 @end

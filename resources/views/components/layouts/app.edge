@@ -4,6 +4,9 @@
 --}}
 @let(nav = [{ label: 'Vídeos', route: 'home', icon: 'lucide:house' }])
 @if(auth?.user)
+  @assign(nav = [...nav, { label: 'Meus videos', route: 'videos_created', icon: 'lucide:upload' }])
+@end
+@if(auth?.user)
   @assign(nav = [...nav, { label: 'Enviar vídeo', route: 'videos_create', icon: 'lucide:upload' }])
 @end
 @if(auth?.user?.isAdmin)
@@ -32,7 +35,6 @@
       <div class="header__inner">
         @!logo({ size: 28 })
         <div class="header__right">
-          @!themeToggle()
           @if(auth?.user)
             <span class="header__user">{{ '@' + auth.user.username }}</span>
             @form({ route: 'session.destroy', method: 'POST' })
