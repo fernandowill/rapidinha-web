@@ -3,6 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Video from '#models/video';
 import app from '@adonisjs/core/services/app';
 import string from '@adonisjs/core/helpers/string'
+import { unlink } from 'node:fs/promises';
 
 export default class VideosController {
     async create({view }: HttpContext){
@@ -43,5 +44,13 @@ export default class VideosController {
         }
         const videos = await query
         return view.render('pages/videos/created', {videos, q})
+    }
+    async destroy({params ,auth, response, session}: HttpContext){
+        const video = await Video.query().where('public_id', params.publicId).where('user_id', auth.user!.id).firstOrFail();
+        await unlink(app.publicPath(video.videoPath))
+        await unlink(app.publicPath(video.thumbnailPath))
+        await video.delete()
+        session.flash('success', 'Vídeo removido')
+        return response.redirect().toRoute('videos_created')
     }
 }

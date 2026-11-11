@@ -1,0 +1,40 @@
+@layouts.app({ title: 'Vídeos (BO)' })
+  @page({ title: 'Vídeos', description: 'Todos os vídeos publicados no Rapidinha.' })
+    <div class="panel table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Visualizações</th>
+            <th>Enviado em</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(video in videos)
+            <tr>
+              <td class="mono">{{ video.id }}</td>
+              <td>
+                <a href="{{ route('video_show', { publicId: video.publicId }) }}">{{ video.title }}</a>
+              </td>
+              <td>{{ '@' + video.author.username }}</td>
+              <td>{{ video.views }}</td>
+              <td>{{ video.createdAt.toFormat('dd/MM/yyyy HH:mm') }}</td>
+              <td>
+                @form({ route: 'admin_videos_destroy', routeParams: { publicId: video.publicId }, 'x-data': '{ submitting: false }', 'x-on:submit': "if (!confirm('Remover este vídeo?')) { $event.preventDefault() } else { submitting = true }" })
+                  <button type="submit" class="btn btn--secondary btn--sm" x-bind:disabled="submitting">Remover</button>
+                @end
+              </td>
+            </tr>
+          @else
+            <tr>
+              <td colspan="6" class="table__empty">Nenhum vídeo publicado ainda.</td>
+            </tr>
+          @end
+        </tbody>
+      </table>
+    </div>
+  @end
+@end

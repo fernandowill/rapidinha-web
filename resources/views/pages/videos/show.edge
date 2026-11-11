@@ -22,6 +22,11 @@
       @if(video.description)
         <p style="margin-top: 12px; white-space: pre-line;">{{ video.description }}</p>
       @end
+      @if(auth.user && auth.user.id === video.userId)
+        @form({ route: 'videos_destroy', routeParams: { publicId: video.publicId }, 'x-data': '{ submitting: false }', 'x-on:submit': "if (!confirm('Remover este vídeo?')) { $event.preventDefault() } else { submitting = true }" })
+          <button type="submit" class="btn btn--secondary" x-bind:disabled="submitting">Remover vídeo</button>
+        @end
+      @end
     </div>
   @end
 @end

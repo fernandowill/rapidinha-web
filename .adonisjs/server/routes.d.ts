@@ -13,7 +13,10 @@ export type ScannedRoutes = {
     'videos_create': { paramsTuple?: []; params?: {} }
     'videos_created': { paramsTuple?: []; params?: {} }
     'videos.store': { paramsTuple?: []; params?: {} }
+    'videos_destroy': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
     'admin_users': { paramsTuple?: []; params?: {} }
+    'admin_videos': { paramsTuple?: []; params?: {} }
+    'admin_videos_destroy': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
     'video_show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
   }
   GET: {
@@ -23,6 +26,7 @@ export type ScannedRoutes = {
     'videos_create': { paramsTuple?: []; params?: {} }
     'videos_created': { paramsTuple?: []; params?: {} }
     'admin_users': { paramsTuple?: []; params?: {} }
+    'admin_videos': { paramsTuple?: []; params?: {} }
     'video_show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
   }
   HEAD: {
@@ -32,6 +36,7 @@ export type ScannedRoutes = {
     'videos_create': { paramsTuple?: []; params?: {} }
     'videos_created': { paramsTuple?: []; params?: {} }
     'admin_users': { paramsTuple?: []; params?: {} }
+    'admin_videos': { paramsTuple?: []; params?: {} }
     'video_show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
   }
   POST: {
@@ -39,6 +44,10 @@ export type ScannedRoutes = {
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
     'videos.store': { paramsTuple?: []; params?: {} }
+  }
+  DELETE: {
+    'videos_destroy': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
+    'admin_videos_destroy': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

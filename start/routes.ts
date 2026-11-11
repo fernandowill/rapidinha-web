@@ -29,12 +29,16 @@ router
     router.get('videos/create', [controllers.Videos, 'create']).as('videos_create')
     router.get('videos/created', [controllers.Videos, 'created']).as('videos_created')
     router.post('videos', [controllers.Videos, 'store'])
+    router.delete('videos/:publicId', [controllers.Videos, 'destroy']).as('videos_destroy')
+
   })
   .use(middleware.auth())
 
 router
   .group(() => {
     router.get('admin/users', [controllers.Users, 'index']).as('admin_users')
+    router.get('admin/videos', [controllers.AdminVideos, 'index']).as('admin_videos')
+    router.delete('admin/videos/:publicId', [controllers.AdminVideos, 'destroy']).as('admin_videos_destroy')
   })
   .use([middleware.auth(), middleware.admin()])
 
