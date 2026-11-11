@@ -1,6 +1,7 @@
+@let(pageTitle = $props.get('title'))
 <!DOCTYPE html>
 <html
-  lang="en-us"
+  lang="pt-BR"
   data-theme="{{
     request.plainCookie('app_theme', {
       defaultValue: 'light',
@@ -11,7 +12,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdonisJS — Starter Kit</title>
+    <title>{{ pageTitle ? `${pageTitle} - Rapidinha` : 'Rapidinha' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
@@ -23,14 +24,14 @@
           @!themeToggle()
           @if(auth?.user)
             @link({ route: 'home', class: 'btn btn--primary btn--sm' })
-              Home
+              Vídeos
             @end
           @else
             @link({ route: 'session.create', class: 'btn btn--ghost btn--sm' })
-              Sign in
+              Entrar
             @end
             @link({ route: 'new_account.create', class: 'btn btn--primary btn--sm' })
-              Get started
+              Criar conta
             @end
           @end
         </div>

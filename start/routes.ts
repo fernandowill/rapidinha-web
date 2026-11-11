@@ -26,13 +26,15 @@ router
 router
   .group(() => {
     router.post('logout', [controllers.Session, 'destroy'])
-    router.get('admin/users', [controllers.Users, 'index'])
     router.get('videos/create', [controllers.Videos, 'create']).as('videos_create')
     router.post('videos', [controllers.Videos, 'store'])
-
   })
   .use(middleware.auth())
-  router.get('videos/:publicId', [controllers.Videos, 'show']).as('video_show')
 
+router
+  .group(() => {
+    router.get('admin/users', [controllers.Users, 'index']).as('admin_users')
+  })
+  .use([middleware.auth(), middleware.admin()])
 
-router.get('ola', [controllers.Olas, 'index'])
+router.get('videos/:publicId', [controllers.Videos, 'show']).as('video_show')

@@ -1,4 +1,4 @@
-@layouts.auth()
+@layouts.auth({ title: 'Criar conta' })
   <h1 class="auth__title">Crie sua conta</h1>
   @form({
     route: 'new_account.store',
@@ -50,7 +50,7 @@
       block: true,
       style: 'margin-top: 4px;',
       'x-bind:disabled': 'submitting',
-      'x-text': "submitting ? 'One moment…' : 'Create account'",
+      'x-text': "submitting ? 'Criando conta…' : 'Criar conta'",
     })
   @end
 

@@ -729,7 +729,6 @@ input {
   margin-top: 18px;
 }
 
-/* Tabelas (listagens do back office) */
 .table-wrap {
   padding: 0;
   overflow-x: auto;
@@ -762,7 +761,6 @@ input {
   color: var(--muted);
 }
 
-/* Nome do usuário logado no header */
 .header__user {
   font-size: 14px;
   font-weight: 560;

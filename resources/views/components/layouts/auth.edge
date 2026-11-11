@@ -1,6 +1,7 @@
+@let(pageTitle = $props.get('title'))
 <!DOCTYPE html>
 <html
-  lang="en-us"
+  lang="pt-BR"
   data-theme="{{
     request.plainCookie('app_theme', {
       defaultValue: 'light',
@@ -11,7 +12,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdonisJS — Starter Kit</title>
+    <title>{{ pageTitle ? `${pageTitle} - Rapidinha` : 'Rapidinha' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
@@ -28,21 +29,16 @@
           @!themeToggle()
         </div>
 
-        <p class="auth__quote">Auth, kept intentionally minimal so you can build it your way.</p>
+        <p class="auth__quote">Vídeos curtos, do jeito que você gosta.</p>
 
         <div>
-          <div class="pitch__t">Looking for production-ready auth?</div>
+          <div class="pitch__t">O que dá para fazer no Rapidinha?</div>
           <p class="pitch__p">
-            Check out Feature packs, production-ready full-stack components from the creator of AdonisJS.
+            Assista aos vídeos da comunidade, busque pelo título e publique os seus em poucos cliques.
           </p>
-          <a
-            class="il pitch__a"
-            href="https://plus.adonisjs.com/feature-packs"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore Feature packs →
-          </a>
+          @link({ route: 'home', class: 'il pitch__a' })
+            Ver vídeos →
+          @end
         </div>
       </aside>
     </div>

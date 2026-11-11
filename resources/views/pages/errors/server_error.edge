@@ -1,19 +1,22 @@
-@layouts.marketing()
+@layouts.marketing({ title: 'Erro no servidor' })
   <div class="home">
     <article class="prose-card">
       <div class="pc-top">
         <span class="pc-status mono tag" style="color: #c0392b;">
           <span class="dot"></span>
-          {{ error.code || 500 }}
+          {{ error.status || 500 }}
         </span>
       </div>
       <div class="pc-lead">
-        <span>Something broke.</span>
-        <em>The server hit an unexpected error.</em>
+        <span>Algo deu errado.</span>
+        <em>O servidor encontrou um erro inesperado.</em>
       </div>
       <p class="pc-para">
-        Try again in a moment. If the problem persists, check the server logs for the underlying exception.
+        Tente de novo em instantes. Se o problema continuar, avise a gente.
       </p>
+      @link({ route: 'home', class: 'btn btn--primary' })
+        Ver vídeos
+      @end
     </article>
   </div>
 @end

@@ -1,4 +1,4 @@
-@layouts.marketing()
+@layouts.marketing({ title: 'Página não encontrada' })
   <div class="home">
     <article class="prose-card">
       <div class="pc-top">
@@ -9,9 +9,11 @@
       </div>
       <div class="pc-lead"><span>Página não encontrada.</span> <em>Esse endereço não existe.</em></div>
       <p class="pc-para">
-        Confira o endereço ou volte para os videos.
+        Confira o endereço ou volte para os vídeos.
       </p>
-      <a href="/">Clique aqui para retornar</a>
+      @link({ route: 'home', class: 'btn btn--primary' })
+        Ver vídeos
+      @end
     </article>
   </div>
 @end

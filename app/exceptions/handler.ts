@@ -34,6 +34,16 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    const mensagens: Record<string, string> = {
+      E_INVALID_CREDENTIALS: 'E-mail ou senha incorretos.',
+      E_UNAUTHORIZED_ACCESS: 'Entre na sua conta para acessar essa página.',
+      E_BAD_CSRF_TOKEN: 'Sua sessão expirou. Tente de novo.',
+    }
+    if (error instanceof Error && 'code' in error && typeof error.code === 'string') {
+      const traducao = mensagens[error.code]
+      if (traducao) error.message = traducao
+    }
+
     return super.handle(error, ctx)
   }
 
